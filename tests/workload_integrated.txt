@@ -1,0 +1,48 @@
+# Integrated VM + Cache Test Workload
+# Demonstrates: Virtual Address → Page Table → Physical Address → Cache → Memory
+
+# Initialize integrated system: 1MB virtual, 256KB physical, 1KB pages, LRU policy
+init integrated 20 18 1024 lru
+
+# Sequential virtual address accesses
+# These will go through: VM translation → Cache hierarchy → Memory
+integrated read 0
+integrated read 1024
+integrated read 2048
+integrated read 3072
+
+# Show statistics after initial accesses
+integrated stats
+
+# Write operations through integrated system
+integrated write 5120 100
+integrated write 6144 200
+integrated write 7168 300
+
+# Re-access some addresses (should hit in cache)
+integrated read 0
+integrated read 1024
+integrated read 5120
+
+# Show improved cache hit ratio
+integrated stats
+
+# Access more addresses to cause page faults and cache misses
+integrated read 102400
+integrated read 204800
+integrated read 307200
+integrated read 409600
+
+integrated stats
+
+# Add more cache levels for better performance
+add cache 8192 64 16 lru
+
+# More accesses with enhanced cache
+integrated read 0
+integrated read 102400
+integrated write 512000 999
+
+integrated stats
+
+exit

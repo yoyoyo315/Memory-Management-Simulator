@@ -1,0 +1,49 @@
+# Cache Workload - Simulates memory access patterns
+
+init cache 5000
+
+# Add L1, L2, and L3 cache
+add cache 256 16 4 lru
+add cache 1024 32 8 lru
+add cache 4096 64 16 fifo
+
+# Sequential access pattern
+cache read 0
+cache read 16
+cache read 32
+cache read 48
+cache read 64
+cache read 80
+cache read 96
+cache read 112
+
+cache stats
+
+# Random access pattern
+cache read 500
+cache read 1000
+cache read 1500
+cache read 200
+cache read 800
+cache read 300
+
+cache stats
+
+# Repeated accesses (test LRU)
+cache read 0
+cache read 16
+cache read 0
+cache read 32
+cache read 0
+cache read 16
+
+cache stats
+
+# Write operations
+cache write 100 123
+cache write 200 456
+cache write 300 789
+
+cache stats
+
+exit

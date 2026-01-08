@@ -1,0 +1,42 @@
+# Virtual Memory Workload - Simulates page access patterns
+
+init vm 20 18 1024 lru
+
+# Sequential page accesses
+vm access 0
+vm access 1024
+vm access 2048
+vm access 3072
+vm access 4096
+vm access 5120
+
+vm stats
+vm pagetable
+
+# Random accesses to cause page faults
+vm access 10240
+vm access 20480
+vm access 30720
+vm access 40960
+
+vm stats
+vm pagetable
+
+# Re-access previously loaded pages
+vm access 0
+vm access 1024
+vm access 2048
+
+vm stats
+
+# Access pattern that will cause replacement
+vm access 51200
+vm access 61440
+vm access 71680
+vm access 81920
+vm access 92160
+
+vm stats
+vm pagetable
+
+exit

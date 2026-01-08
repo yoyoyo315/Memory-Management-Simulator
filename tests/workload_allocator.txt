@@ -1,0 +1,42 @@
+# Memory Allocator Workload - Simulates typical application behavior
+
+init memory 4096
+set allocator first_fit
+
+# Initial allocations
+malloc 128
+malloc 256
+malloc 512
+malloc 64
+malloc 128
+malloc 256
+
+dump memory
+stats
+
+# Free some blocks to create fragmentation
+free 2
+free 4
+free 5
+
+dump memory
+stats
+
+# Allocate with fragmented memory
+malloc 100
+malloc 200
+malloc 50
+
+dump memory
+stats
+
+# More frees and allocations
+free 1
+free 3
+malloc 600
+malloc 300
+
+dump memory
+stats
+
+exit
