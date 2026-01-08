@@ -1,6 +1,8 @@
 # Memory Management Simulator
 
 A comprehensive C++ simulator for learning and testing memory management concepts including memory allocation algorithms, cache hierarchies, and virtual memory with page replacement.
+[Demo Video](Video-demo.mp4)
+
 
 ## Features
 
